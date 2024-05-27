@@ -20,7 +20,7 @@ const App = () => {
       const data = await response.json();
       setUsers(data);
     } catch (error) {
-      console.error("Error fetching users:", error);
+      console.error("Error fetching students:", error);
     }
   };
 
@@ -39,7 +39,21 @@ const App = () => {
       const data = await response.json();
       setUsers([...users, data]);
     } catch (error) {
-      console.error("Error adding user:", error);
+      console.error("Error adding student:", error);
+    }
+  };
+
+  const deleteUser = async (userId) => {
+    try {
+      await fetch(
+        `${process.env.REACT_APP_API_BASE_URL}${process.env.REACT_APP_USERS_ENDPOINT}/${userId}`,
+        {
+          method: "DELETE",
+        }
+      );
+      setUsers(users.filter((user) => user.id !== userId));
+    } catch (error) {
+      console.error("Error deleting user:", error);
     }
   };
 
@@ -58,7 +72,7 @@ const App = () => {
       const data = await response.json();
       setUsers(users.map((user) => (user.id === updatedUser.id ? data : user)));
     } catch (error) {
-      console.error("Error updating user:", error);
+      console.error("Error updating student:", error);
     }
   };
 
@@ -68,13 +82,13 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>User Management</h1>
+      <h1>Student Management</h1>
       <UserForm
         addUser={addUser}
         editingUser={editingUser}
         updateUser={updateUser}
       />
-      <UserList users={users} editUser={editUser} />
+      <UserList users={users} editUser={editUser} deleteUser={deleteUser} />
     </div>
   );
 };

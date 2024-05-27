@@ -37,7 +37,7 @@ const UserForm = ({ addUser, editingUser, updateUser }) => {
 
   return (
     <div className="user-form-container">
-      <h2>{isEditing ? "Edit User" : "Add User"}</h2>
+      <h2>{isEditing ? "Edit Student" : "Add Student"}</h2>
       <form onSubmit={handleSubmit} className="user-form">
         <div className="form-group">
           <input
@@ -50,11 +50,47 @@ const UserForm = ({ addUser, editingUser, updateUser }) => {
             required
           />
           <input
-            type="email"
-            name="email"
-            value={user.email}
+            type="text"
+            name="username"
+            value={user.username}
             onChange={handleChange}
-            placeholder="Email"
+            placeholder="Username"
+            className="form-input"
+            required
+          />
+          <input
+            type="text"
+            name="birth_year"
+            value={user.birth_year}
+            onChange={handleChange}
+            placeholder="Birth year"
+            className="form-input"
+            required
+          />
+          <input
+            type="text"
+            name="gender"
+            value={user.gender}
+            onChange={handleChange}
+            placeholder="Gender"
+            className="form-input"
+            required
+          />
+          <input
+            type="text"
+            name="university"
+            value={user.university}
+            onChange={handleChange}
+            placeholder="University"
+            className="form-input"
+            required
+          />
+          <input
+            type="text"
+            name="major"
+            value={user.major}
+            onChange={handleChange}
+            placeholder="Major"
             className="form-input"
             required
           />
