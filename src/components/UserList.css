@@ -24,7 +24,6 @@
 }
 
 .user-table button {
-  background-color: #4caf50;
   color: white;
   border: none;
   padding: 8px 16px;
@@ -36,6 +35,9 @@
   border-radius: 4px;
 }
 
-.user-table button:hover {
-  background-color: #45a049;
+.user-table .edit-btn {
+  background-color: #4caf50;
+}
+.user-table .delete-btn {
+  background-color: #dc3545;
 }
