@@ -3,9 +3,9 @@ import { render, screen } from "@testing-library/react";
 import App from "./App"; // Assuming App.js contains the provided JSX code
 
 describe("App Component", () => {
-  test("renders User Management header", () => {
+  test("renders Student Management header", () => {
     render(<App />);
-    const headerElement = screen.getByText("User Management");
+    const headerElement = screen.getByText("Student Management");
     expect(headerElement).toBeInTheDocument();
   });
 });
