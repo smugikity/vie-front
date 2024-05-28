@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import "./UserForm.css"; // Import CSS file for UserForm component
 
 const UserForm = ({ addUser, editingUser, updateUser }) => {
-  const [user, setUser] = useState({ name: "", email: "" });
+  const [user, setUser] = useState({
+    name: "test",
+    university: "test",
+  });
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
@@ -10,7 +13,7 @@ const UserForm = ({ addUser, editingUser, updateUser }) => {
       setUser(editingUser);
       setIsEditing(true);
     } else {
-      setUser({ name: "", email: "" });
+      setUser({ name: "", gender: "", university: "" });
       setIsEditing(false);
     }
   }, [editingUser]);
@@ -25,13 +28,17 @@ const UserForm = ({ addUser, editingUser, updateUser }) => {
     if (isEditing) {
       updateUser(user);
     } else {
-      addUser({ ...user, id: Date.now() });
-      setUser({ name: "", email: "" });
+      addUser(user);
+      setUser({
+        name: "",
+        gender: "",
+        university: "",
+      });
     }
   };
 
   const handleCancel = () => {
-    setUser({ name: "", email: "" });
+    setUser({ name: "", gender: "", university: "" });
     setIsEditing(false);
   };
 
@@ -51,24 +58,6 @@ const UserForm = ({ addUser, editingUser, updateUser }) => {
           />
           <input
             type="text"
-            name="username"
-            value={user.username}
-            onChange={handleChange}
-            placeholder="Username"
-            className="form-input"
-            required
-          />
-          <input
-            type="text"
-            name="birth_year"
-            value={user.birth_year}
-            onChange={handleChange}
-            placeholder="Birth year"
-            className="form-input"
-            required
-          />
-          <input
-            type="text"
             name="gender"
             value={user.gender}
             onChange={handleChange}
@@ -82,15 +71,6 @@ const UserForm = ({ addUser, editingUser, updateUser }) => {
             value={user.university}
             onChange={handleChange}
             placeholder="University"
-            className="form-input"
-            required
-          />
-          <input
-            type="text"
-            name="major"
-            value={user.major}
-            onChange={handleChange}
-            placeholder="Major"
             className="form-input"
             required
           />

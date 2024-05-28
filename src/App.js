@@ -37,7 +37,7 @@ const App = () => {
         }
       );
       const data = await response.json();
-      setUsers([...users, data]);
+      fetchUsers();
     } catch (error) {
       console.error("Error adding student:", error);
     }
@@ -51,7 +51,7 @@ const App = () => {
           method: "DELETE",
         }
       );
-      setUsers(users.filter((user) => user.id !== userId));
+      setUsers(users.filter((user) => user.stt !== userId));
     } catch (error) {
       console.error("Error deleting user:", error);
     }
@@ -60,7 +60,7 @@ const App = () => {
   const updateUser = async (updatedUser) => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}${process.env.REACT_APP_USERS_ENDPOINT}/${updatedUser.id}`,
+        `${process.env.REACT_APP_API_BASE_URL}${process.env.REACT_APP_USERS_ENDPOINT}/${editingUser.stt}`,
         {
           method: "PUT",
           headers: {
@@ -70,7 +70,9 @@ const App = () => {
         }
       );
       const data = await response.json();
-      setUsers(users.map((user) => (user.id === updatedUser.id ? data : user)));
+      setUsers(
+        users.map((user) => (user.stt === updatedUser.stt ? updatedUser : user))
+      );
     } catch (error) {
       console.error("Error updating student:", error);
     }

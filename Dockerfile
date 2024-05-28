@@ -8,8 +8,10 @@ RUN npm install
 
 COPY . .
 
-# ENV REACT_APP_API_BASE_URL=https://jsonplaceholder.typicode.com
-# ENV REACT_APP_USERS_ENDPOINT=/users
+ARG REACT_APP_API_BASE_URL
+ARG REACT_APP_USERS_ENDPOINT
+ENV REACT_APP_API_BASE_URL=${REACT_APP_API_BASE_URL}
+ENV REACT_APP_USERS_ENDPOINT=${REACT_APP_USERS_ENDPOINT}
 
 RUN npm run build
 
@@ -20,3 +22,5 @@ COPY --from=build /app/build /usr/share/nginx/html
 EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
+
+
