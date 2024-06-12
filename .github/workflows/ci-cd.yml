@@ -63,7 +63,6 @@ jobs:
     needs: build-and-push-docker
     environment: ci
     env:
-      RUN_NUMBER: ${{ github.run_number }}
       TAG: ${GITHUB_REF#refs/tags/}
     steps:
       - uses: actions/checkout@v4
