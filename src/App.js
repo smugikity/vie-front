@@ -8,7 +8,7 @@ const App = () => {
   const [users, setUsers] = useState([]);
   const [editingUser, setEditingUser] = useState(null);
   // const url = `${process.env.REACT_APP_API_BASE_URL}${process.env.REACT_APP_USERS_ENDPOINT}`;
-  const url = "http://api:5000/students";
+  const url = "http://192.168.49.2:30501/students";
   useEffect(() => {
     fetchUsers();
   }, []);
