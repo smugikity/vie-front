@@ -26,7 +26,7 @@ const App = () => {
 
   const addUser = async (newUser) => {
     try {
-      const response = await fetch(
+      await fetch(
         `${process.env.REACT_APP_API_BASE_URL}${process.env.REACT_APP_USERS_ENDPOINT}`,
         {
           method: "POST",
@@ -36,7 +36,6 @@ const App = () => {
           body: JSON.stringify(newUser),
         }
       );
-      const data = await response.json();
       fetchUsers();
     } catch (error) {
       console.error("Error adding student:", error);
@@ -59,7 +58,7 @@ const App = () => {
 
   const updateUser = async (updatedUser) => {
     try {
-      const response = await fetch(
+      await fetch(
         `${process.env.REACT_APP_API_BASE_URL}${process.env.REACT_APP_USERS_ENDPOINT}/${editingUser.stt}`,
         {
           method: "PUT",
@@ -69,7 +68,7 @@ const App = () => {
           body: JSON.stringify(updatedUser),
         }
       );
-      const data = await response.json();
+      // const data = await response.json();
       setUsers(
         users.map((user) => (user.stt === updatedUser.stt ? updatedUser : user))
       );
