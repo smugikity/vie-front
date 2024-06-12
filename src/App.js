@@ -7,16 +7,15 @@ import "./App.css";
 const App = () => {
   const [users, setUsers] = useState([]);
   const [editingUser, setEditingUser] = useState(null);
-
+  // const url = `${process.env.REACT_APP_API_BASE_URL}${process.env.REACT_APP_USERS_ENDPOINT}`;
+  const url = "http://192.168.49.2:30501/students";
   useEffect(() => {
     fetchUsers();
   }, []);
 
   const fetchUsers = async () => {
     try {
-      const response = await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}${process.env.REACT_APP_USERS_ENDPOINT}`
-      );
+      const response = await fetch(url);
       const data = await response.json();
       setUsers(data);
     } catch (error) {
@@ -26,16 +25,13 @@ const App = () => {
 
   const addUser = async (newUser) => {
     try {
-      await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}${process.env.REACT_APP_USERS_ENDPOINT}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newUser),
-        }
-      );
+      await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newUser),
+      });
       fetchUsers();
     } catch (error) {
       console.error("Error adding student:", error);
@@ -44,12 +40,9 @@ const App = () => {
 
   const deleteUser = async (userId) => {
     try {
-      await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}${process.env.REACT_APP_USERS_ENDPOINT}/${userId}`,
-        {
-          method: "DELETE",
-        }
-      );
+      await fetch(`${url}/${userId}`, {
+        method: "DELETE",
+      });
       setUsers(users.filter((user) => user.stt !== userId));
     } catch (error) {
       console.error("Error deleting user:", error);
@@ -58,16 +51,13 @@ const App = () => {
 
   const updateUser = async (updatedUser) => {
     try {
-      await fetch(
-        `${process.env.REACT_APP_API_BASE_URL}${process.env.REACT_APP_USERS_ENDPOINT}/${editingUser.stt}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(updatedUser),
-        }
-      );
+      await fetch(`${url}/${editingUser.stt}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedUser),
+      });
       // const data = await response.json();
       setUsers(
         users.map((user) => (user.stt === updatedUser.stt ? updatedUser : user))
