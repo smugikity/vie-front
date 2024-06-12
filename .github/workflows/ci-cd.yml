@@ -87,8 +87,8 @@ jobs:
 
       - name: Publish new image
         run: |
-          git config user.email '7upnamk@github.com'
-          git config user.name 'smugikity'
+          git config user.email github-actions@github.com
+          git config user.name github-actions
           # rm values.yaml.bak
           git add values.yaml
           git commit -m "Update image tag, manifest: ${{ github.run_number }}"
