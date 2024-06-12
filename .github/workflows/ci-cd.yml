@@ -63,8 +63,6 @@ jobs:
     needs: build-and-push-docker
     environment: ci
     env:
-      GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
-      GIT_PASSWORD: ${{ secrets.GIT_TOKEN }}
       RUN_NUMBER: ${{ github.run_number }}
       TAG: ${GITHUB_REF#refs/tags/}
     steps:
@@ -72,7 +70,7 @@ jobs:
         name: Change the deployment of git repo
         with:
           repository: smugikity/vdt-config-web
-          token: ${{ secrets.GIT_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           ref: main
       - name: Change image tag
         run: |
