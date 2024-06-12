@@ -67,13 +67,13 @@ jobs:
       issues: write
     env:
       TAG: ${GITHUB_REF#refs/tags/}
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_TOKEN: ${{ secrets.GIT_TOKENN }}
     steps:
       - uses: actions/checkout@v4
         name: Change the deployment of git repo
         with:
           repository: smugikity/vdt-config-web
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GIT_TOKENN }}
           ref: main
       - name: Change image tag
         run: |
