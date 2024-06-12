@@ -60,7 +60,7 @@ jobs:
 
   change-image-tag:
     runs-on: ubuntu-latest
-    needs: build-and-push-docker
+#    needs: build-and-push-docker
     environment: ci
     env:
       TAG: ${GITHUB_REF#refs/tags/}
